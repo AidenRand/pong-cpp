@@ -1,19 +1,16 @@
 #include <SFML/Graphics.hpp>
 
+#include <ball.hpp>
+#include <paddle1.hpp>
+
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1000, 600), "Pong");
 	window.setFramerateLimit(60);
 
-	//  Draw ball
-	float stepx = 5;
-	float stepy = 5;
+	Paddle paddle1(10, 50, 20, 250);
 
-	sf::RectangleShape ball;
-	ball.setSize(sf::Vector2f(10, 10));
-	ball.setFillColor(sf::Color(240, 240, 240));
-	ball.setOrigin(5, 5);
-	ball.setPosition(495, 295);
+	Ball ball(10, 10, 595, 295);
 
 	while (window.isOpen())
 	{
@@ -24,30 +21,23 @@ int main()
 			{
 				window.close();
 			}
+
+			// Check if s or w has been pressed
+			if (event.type == sf::Event::KeyPressed)
+			{
+				paddle1.processEvents(event.key.code, true);
+			}
+			else if (event.type == sf::Event::KeyReleased)
+			{
+				paddle1.processEvents(event.key.code, false);
+			}
 		}
 
-		// If the ball hits the left or right side reverse the direction
-		if (ball.getPosition().x > 995)
-		{
-			stepx = -5;
-		}
-		else if (ball.getPosition().x < 5)
-		{
-			stepx = 5;
-		}
-
-		if (ball.getPosition().y > 595)
-		{
-			stepy = -5;
-		}
-		else if (ball.getPosition().y < 5)
-		{
-			stepy = 5;
-		}
-
-		ball.move(stepx, stepy);
 		window.clear();
-		window.draw(ball);
+		ball.update();
+		ball.draw_to(window);
+		paddle1.update();
+		paddle1.draw_to(window);
 		window.display();
 	}
 	return 0;
