@@ -10,7 +10,7 @@ public:
 	Ball(float width, float height, float x, float y)
 	{
 		rect.setSize(sf::Vector2f(width, height));
-		rect.setFillColor(sf::Color(240, 240, 240));
+		rect.setFillColor(sf::Color(220, 220, 220));
 		rect.setOrigin(height / 2, width / 2);
 		rect.setPosition(x, y);
 	}

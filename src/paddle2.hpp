@@ -1,6 +1,8 @@
 #ifndef PADDLE2_HPP
 #define PADDLE2_HPP
 
+#include <SFML/Graphics.hpp>
+
 class Paddle2
 {
 public:
@@ -10,6 +12,7 @@ public:
 		rect.setSize(sf::Vector2f(width, height));
 		rect.setPosition(x, y);
 		rect.setOrigin(width / 2, height / 2);
+		rect.setFillColor(sf::Color(220, 220, 220));
 		up = false;
 		down = false;
 	}
@@ -43,7 +46,7 @@ public:
 		if (up)
 		{
 			movement.y = 15;
-			if (rect.getPosition().y >= 575)
+			if (rect.getPosition().y >= 580)
 			{
 				movement.y -= 15;
 			}
@@ -52,7 +55,7 @@ public:
 		if (down)
 		{
 			movement.y = -15;
-			if (rect.getPosition().y <= 25)
+			if (rect.getPosition().y <= 20)
 			{
 				movement.y += 15;
 			}
