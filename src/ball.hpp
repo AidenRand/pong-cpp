@@ -6,6 +6,7 @@
 class Ball
 {
 public:
+	// Make the ball
 	Ball(float width, float height, float x, float y)
 	{
 		rect.setSize(sf::Vector2f(width, height));
@@ -19,24 +20,25 @@ public:
 		// If the ball hits the left or right side reverse the direction
 		if (rect.getPosition().x > 995)
 		{
-			stepx = -5;
+			stepx -= 5;
 		}
 		else if (rect.getPosition().x < 5)
 		{
-			stepx = 5;
+			stepx += 5;
 		}
 
 		// If the ball hits the top or bottom side reverse the direction
 		if (rect.getPosition().y > 595)
 		{
-			stepy = -5;
+			stepy -= 5;
 		}
 		else if (rect.getPosition().y < 5)
 		{
-			stepy = 5;
+			stepy += 5;
 		}
 	}
 
+	// Draw the ball to the window
 	void draw_to(sf::RenderWindow& window)
 	{
 		rect.move(stepx, stepy);
@@ -45,7 +47,7 @@ public:
 
 private:
 	sf::RectangleShape rect;
-	float stepx = 5;
+	float stepx = 6;
 	float stepy = 5;
 };
 

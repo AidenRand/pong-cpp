@@ -1,13 +1,11 @@
-#ifndef PADDLE1_H
-#define PADDLE1_H
+#ifndef PADDLE2_HPP
+#define PADDLE2_HPP
 
-#include <SFML/Graphics.hpp>
-
-class Paddle1
+class Paddle2
 {
 public:
 	// Make the paddle
-	Paddle1(float width, float height, float x, float y)
+	Paddle2(float width, float height, float x, float y)
 	{
 		rect.setSize(sf::Vector2f(width, height));
 		rect.setPosition(x, y);
@@ -16,16 +14,16 @@ public:
 		down = false;
 	}
 
-	// Detect if the s or w key has been pressed
+	// Detect if the up or down key has been pressed
 	void processEvents(sf::Keyboard::Key key, bool checkPressed)
 	{
 		if (checkPressed == true)
 		{
-			if (key == sf::Keyboard::S)
+			if (key == sf::Keyboard::Down)
 			{
 				up = true;
 			}
-			else if (key == sf::Keyboard::W)
+			else if (key == sf::Keyboard::Up)
 			{
 				down = true;
 			}
