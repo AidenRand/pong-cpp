@@ -19,21 +19,31 @@ public:
 
 	void paddleCollision(Paddles& left, Paddles& right)
 	{
-		std::cout << left.leftPaddle.getPosition().x;
-		std::cout << right.rightPaddle.getPosition().x;
+		auto leftPaddle = left.leftPaddle;
+		auto rightPaddle = right.rightPaddle;
+
+		if (rect.getGlobalBounds().intersects(leftPaddle.getGlobalBounds()))
+		{
+			stepx = 5;
+		}
+
+		if (rect.getGlobalBounds().intersects(rightPaddle.getGlobalBounds()))
+		{
+			stepx = -5;
+		}
 	}
 
 	void update()
 	{
-		// If the ball hits the left or right side reverse the direction
-		if (rect.getPosition().x > 995)
-		{
-			stepx -= 5;
-		}
-		else if (rect.getPosition().x < 5)
-		{
-			stepx += 5;
-		}
+		// // If the ball hits the left or right side reverse the direction
+		// if (rect.getPosition().x > 995)
+		// {
+		// 	stepx -= 5;
+		// }
+		// else if (rect.getPosition().x < 5)
+		// {
+		// 	stepx += 5;
+		// }
 
 		// If the ball hits the top or bottom side reverse the direction
 		if (rect.getPosition().y > 595)

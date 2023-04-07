@@ -15,7 +15,6 @@ int main()
 
 	// Create ball
 	Ball ball(10, 10, 595, 295);
-	ball.paddleCollision(leftPaddle, rightPaddle);
 
 	// Draw dotted line
 	Net net(3, 15);
@@ -51,6 +50,7 @@ int main()
 			}
 		}
 
+		ball.paddleCollision(leftPaddle, rightPaddle);
 		window.clear(sf::Color(6, 6, 6));
 		ball.update();
 		ball.drawTo(window);
