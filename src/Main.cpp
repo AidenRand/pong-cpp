@@ -53,6 +53,7 @@ int main()
 		ball.paddleCollision(leftPaddle, rightPaddle);
 		window.clear(sf::Color(6, 6, 6));
 		ball.update();
+		ball.resetBall();
 		ball.drawTo(window);
 		leftPaddle.updateLeft();
 		leftPaddle.leftDrawTo(window);

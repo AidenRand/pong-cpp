@@ -2,6 +2,7 @@
 #define BALL_HPP
 
 #include <SFML/Graphics.hpp>
+#include <cstdlib>
 #include <iostream>
 #include <paddles.hpp>
 
@@ -24,27 +25,17 @@ public:
 
 		if (rect.getGlobalBounds().intersects(leftPaddle.getGlobalBounds()))
 		{
-			stepx = 5;
+			stepx = 14;
 		}
 
 		if (rect.getGlobalBounds().intersects(rightPaddle.getGlobalBounds()))
 		{
-			stepx = -5;
+			stepx = -14;
 		}
 	}
 
 	void update()
 	{
-		// // If the ball hits the left or right side reverse the direction
-		// if (rect.getPosition().x > 995)
-		// {
-		// 	stepx -= 5;
-		// }
-		// else if (rect.getPosition().x < 5)
-		// {
-		// 	stepx += 5;
-		// }
-
 		// If the ball hits the top or bottom side reverse the direction
 		if (rect.getPosition().y > 595)
 		{
@@ -53,6 +44,25 @@ public:
 		else if (rect.getPosition().y < 5)
 		{
 			stepy += 5;
+		}
+	}
+
+	void resetBall()
+	{
+		int randomStepX = 6 + (rand() % 10);
+		int randomStepY = 5;
+		// If the ball hits the left or right side reverse the direction
+		if (rect.getPosition().x > 995)
+		{
+			rect.setPosition(494, 240);
+			stepx = -randomStepX;
+			stepy = -randomStepY;
+		}
+		else if (rect.getPosition().x < 5)
+		{
+			rect.setPosition(494, 240);
+			stepx = randomStepX;
+			stepy = randomStepY;
 		}
 	}
 
@@ -65,7 +75,7 @@ public:
 
 private:
 	sf::RectangleShape rect;
-	float stepx = 6;
+	float stepx = 8;
 	float stepy = 5;
 };
 
