@@ -2,6 +2,8 @@
 #define BALL_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <paddles.hpp>
 
 class Ball
 {
@@ -10,9 +12,15 @@ public:
 	Ball(float width, float height, float x, float y)
 	{
 		rect.setSize(sf::Vector2f(width, height));
-		rect.setFillColor(sf::Color(220, 220, 220));
+		rect.setFillColor(sf::Color(200, 200, 200));
 		rect.setOrigin(height / 2, width / 2);
 		rect.setPosition(x, y);
+	}
+
+	void paddleCollision(Paddles& left, Paddles& right)
+	{
+		std::cout << left.leftPaddle.getPosition().x;
+		std::cout << right.rightPaddle.getPosition().x;
 	}
 
 	void update()
@@ -39,7 +47,7 @@ public:
 	}
 
 	// Draw the ball to the window
-	void draw_to(sf::RenderWindow& window)
+	void drawTo(sf::RenderWindow& window)
 	{
 		rect.move(stepx, stepy);
 		window.draw(rect);

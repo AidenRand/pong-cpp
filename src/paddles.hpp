@@ -25,6 +25,9 @@ public:
 		rightDown = false;
 	}
 
+	sf::RectangleShape leftPaddle;
+	sf::RectangleShape rightPaddle;
+
 	void processLeftEvents(sf::Keyboard::Key key, bool checkPressed)
 	{
 		// Check if the left paddle is being controlled
@@ -65,6 +68,16 @@ public:
 			rightUp = false;
 			rightDown = false;
 		}
+	}
+
+	void leftCollision(sf::RectangleShape& ball)
+	{
+		std::cout << ball.getOrigin().x;
+	}
+
+	void rightCollision(sf::RectangleShape& ball)
+	{
+		std::cout << ball.getOrigin().x;
 	}
 
 	void updateLeft()
@@ -132,10 +145,7 @@ public:
 	}
 
 private:
-	sf::RectangleShape leftPaddle;
 	bool leftUp, leftDown;
-
-	sf::RectangleShape rightPaddle;
 	bool rightUp, rightDown;
 };
 

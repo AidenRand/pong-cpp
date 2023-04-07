@@ -9,12 +9,13 @@ int main()
 	sf::RenderWindow window(sf::VideoMode(1000, 600), "PONG");
 	window.setFramerateLimit(60);
 
-	// Create ball
-	Ball ball(10, 10, 595, 295);
-
 	// Create player paddles
 	Paddles leftPaddle(10, 40, 20, 280);
 	Paddles rightPaddle(10, 40, 980, 280);
+
+	// Create ball
+	Ball ball(10, 10, 595, 295);
+	ball.paddleCollision(leftPaddle, rightPaddle);
 
 	// Draw dotted line
 	Net net(3, 15);
@@ -52,7 +53,7 @@ int main()
 
 		window.clear(sf::Color(6, 6, 6));
 		ball.update();
-		ball.draw_to(window);
+		ball.drawTo(window);
 		leftPaddle.updateLeft();
 		leftPaddle.leftDrawTo(window);
 		rightPaddle.updateRight();
