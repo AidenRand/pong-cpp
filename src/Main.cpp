@@ -1,8 +1,10 @@
 #include <SFML/Graphics.hpp>
 
 #include <ball.hpp>
+#include <gamelogic.hpp>
 #include <net.hpp>
 #include <paddles.hpp>
+#include <string>
 
 int main()
 {
@@ -14,7 +16,13 @@ int main()
 	Paddles rightPaddle(10, 40, 980, 280);
 
 	// Create ball
-	Ball ball(10, 10, 595, 295);
+	Ball ball(10, 10, 595, 295); 
+
+	std::string leftScore = "0";
+	std::string rightScore = "10";
+
+	// Draw scores
+	Logic score(leftScore, rightScore, "content/fonts/8_bit_party(1)/8_bit_party.ttf");
 
 	// Draw dotted line
 	Net net(3, 15);
@@ -60,6 +68,7 @@ int main()
 		rightPaddle.updateRight();
 		rightPaddle.rightDrawTo(window);
 		net.drawTo(window);
+
 		window.display();
 	}
 	return 0;

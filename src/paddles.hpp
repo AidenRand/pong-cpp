@@ -70,16 +70,6 @@ public:
 		}
 	}
 
-	void leftCollision(sf::RectangleShape& ball)
-	{
-		std::cout << ball.getOrigin().x;
-	}
-
-	void rightCollision(sf::RectangleShape& ball)
-	{
-		std::cout << ball.getOrigin().x;
-	}
-
 	void updateLeft()
 	{
 		sf::Vector2f leftMovement;

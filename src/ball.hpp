@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <paddles.hpp>
+#include <unistd.h>
 
 class Ball
 {
@@ -49,18 +50,21 @@ public:
 
 	void resetBall()
 	{
-		int randomStepX = 6 + (rand() % 10);
+		int randomStepX = 6 + (rand() % 7);
 		int randomStepY = 5;
+
 		// If the ball hits the left or right side reverse the direction
-		if (rect.getPosition().x > 995)
+		if (rect.getPosition().x > 1005)
 		{
 			rect.setPosition(494, 240);
+			sleep(1);
 			stepx = -randomStepX;
 			stepy = -randomStepY;
 		}
-		else if (rect.getPosition().x < 5)
+		else if (rect.getPosition().x < -5)
 		{
 			rect.setPosition(494, 240);
+			sleep(1);
 			stepx = randomStepX;
 			stepy = randomStepY;
 		}
@@ -75,7 +79,7 @@ public:
 
 private:
 	sf::RectangleShape rect;
-	float stepx = 8;
+	float stepx = 6;
 	float stepy = 5;
 };
 
