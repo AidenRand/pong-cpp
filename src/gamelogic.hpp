@@ -9,13 +9,46 @@
 class Logic
 {
 public:
-	Logic(std::string leftScoreText, std::string rightScoreText, sf::Font font)
+	Logic(int leftScoreNum, int rightScoreNum)
 	{
-		leftScore.setFont(font);
-		rightScore.setFont(font);
+
+		std::string leftScoreText = std::to_string(leftScoreNum);
+		std::string rightScoreText = std::to_string(rightScoreNum);
 		leftScore.setString(leftScoreText);
 		rightScore.setString(rightScoreText);
+		leftScore.setPosition(390, 40);
+		rightScore.setPosition(570, 40);
 	};
+
+	void updateScore(Ball& ballRect, int& leftScoreNum, int& rightScoreNum)
+	{
+		// Return error if font file doesn't load
+		if (!font.loadFromFile("content/fonts/8_bit_party(1)/8_bit_party.ttf"))
+		{
+			std::cout << "Error loading file" << std::endl;
+			system("pause");
+		}
+
+		// Get ball object from ball.hpp
+		auto ball = ballRect.rect;
+
+		// Increment score for side that scored
+		if (ball.getPosition().x > 1005)
+		{
+			leftScoreNum += 1;
+		}
+		else if (ball.getPosition().x < -5)
+		{
+			rightScoreNum += 1;
+		}
+
+		leftScore.setFont(font);
+		rightScore.setFont(font);
+		leftScore.setCharacterSize(50);
+		rightScore.setCharacterSize(50);
+		leftScore.setFillColor(sf::Color(200, 200, 200));
+		rightScore.setFillColor(sf::Color(200, 200, 200));
+	}
 
 	void drawScore(sf::RenderWindow& window)
 	{
@@ -26,6 +59,7 @@ public:
 private:
 	sf::Text leftScore;
 	sf::Text rightScore;
+	sf::Font font;
 };
 
 #endif

@@ -10,7 +10,7 @@
 class Ball
 {
 public:
-	// Make the ball
+	// Make ball
 	Ball(float width, float height, float x, float y)
 	{
 		rect.setSize(sf::Vector2f(width, height));
@@ -19,11 +19,14 @@ public:
 		rect.setPosition(x, y);
 	}
 
+	sf::RectangleShape rect;
+
 	void paddleCollision(Paddles& left, Paddles& right)
 	{
 		auto leftPaddle = left.leftPaddle;
 		auto rightPaddle = right.rightPaddle;
 
+		// When ball hits paddle, reverse the x speed
 		if (rect.getGlobalBounds().intersects(leftPaddle.getGlobalBounds()))
 		{
 			stepx = 14;
@@ -37,7 +40,7 @@ public:
 
 	void update()
 	{
-		// If the ball hits the top or bottom side reverse the direction
+		// If ball hits top or bottom, reverse y speed
 		if (rect.getPosition().y > 595)
 		{
 			stepy -= 5;
@@ -53,7 +56,7 @@ public:
 		int randomStepX = 6 + (rand() % 7);
 		int randomStepY = 5;
 
-		// If the ball hits the left or right side reverse the direction
+		// If ball goes past left or right window boundary, reset ball at center
 		if (rect.getPosition().x > 1005)
 		{
 			rect.setPosition(494, 240);
@@ -70,7 +73,7 @@ public:
 		}
 	}
 
-	// Draw the ball to the window
+	// Draw ball to the window
 	void drawTo(sf::RenderWindow& window)
 	{
 		rect.move(stepx, stepy);
@@ -78,7 +81,6 @@ public:
 	}
 
 private:
-	sf::RectangleShape rect;
 	float stepx = 6;
 	float stepy = 5;
 };

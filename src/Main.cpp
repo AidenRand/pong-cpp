@@ -16,13 +16,10 @@ int main()
 	Paddles rightPaddle(10, 40, 980, 280);
 
 	// Create ball
-	Ball ball(10, 10, 595, 295); 
+	Ball ball(10, 10, 595, 295);
 
-	std::string leftScore = "0";
-	std::string rightScore = "10";
-
-	// Draw scores
-	Logic score(leftScore, rightScore, "content/fonts/8_bit_party(1)/8_bit_party.ttf");
+	int leftScore = 0;
+	int rightScore = 0;
 
 	// Draw dotted line
 	Net net(3, 15);
@@ -67,6 +64,9 @@ int main()
 		leftPaddle.leftDrawTo(window);
 		rightPaddle.updateRight();
 		rightPaddle.rightDrawTo(window);
+		Logic score(leftScore, rightScore);
+		score.updateScore(ball, leftScore, rightScore);
+		score.drawScore(window);
 		net.drawTo(window);
 
 		window.display();
