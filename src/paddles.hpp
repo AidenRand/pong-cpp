@@ -105,6 +105,7 @@ public:
 		if (rightUp)
 		{
 			rightMovement.y += 15;
+
 			if (rightPaddle.getPosition().y >= 580)
 			{
 				rightMovement.y -= 15;
@@ -120,6 +121,11 @@ public:
 		}
 
 		rightPaddle.move(rightMovement);
+	}
+
+	void resetPaddles()
+	{
+		rightPaddle.setPosition(980, 290);
 	}
 
 	// Draw left paddle to window

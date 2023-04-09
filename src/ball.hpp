@@ -2,10 +2,10 @@
 #define BALL_HPP
 
 #include <SFML/Graphics.hpp>
-#include <cstdlib>
+#include <cstdio>
+#include <ctime>
 #include <iostream>
 #include <paddles.hpp>
-#include <unistd.h>
 
 class Ball
 {
@@ -41,11 +41,11 @@ public:
 	void update()
 	{
 		// If ball hits top or bottom, reverse y speed
-		if (rect.getPosition().y > 595)
+		if (rect.getPosition().y > 590)
 		{
 			stepy -= 5;
 		}
-		else if (rect.getPosition().y < 5)
+		else if (rect.getPosition().y < 10)
 		{
 			stepy += 5;
 		}
@@ -55,22 +55,32 @@ public:
 	{
 		int randomStepX = 6 + (rand() % 7);
 		int randomStepY = 5;
+		int delay = 1;
+		delay *= CLOCKS_PER_SEC;
+		clock_t now = clock();
 
 		// If ball goes past left or right window boundary, reset ball at center
 		if (rect.getPosition().x > 1005)
 		{
 			rect.setPosition(494, 240);
-			sleep(1);
+			while (clock() - now < delay)
+				; // Empty while
 			stepx = -randomStepX;
 			stepy = -randomStepY;
 		}
 		else if (rect.getPosition().x < -5)
 		{
 			rect.setPosition(494, 240);
-			sleep(1);
+			while (clock() - now < delay)
+				; // Empty while
 			stepx = randomStepX;
 			stepy = randomStepY;
 		}
+	}
+
+	void endGame()
+	{
+		rect.setPosition(485, 290);
 	}
 
 	// Draw ball to the window

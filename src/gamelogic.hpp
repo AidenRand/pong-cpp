@@ -2,10 +2,9 @@
 #define GAME_LOGIC_HPP
 
 #include <SFML/Graphics.hpp>
-#include <ball.hpp>
 #include <iostream>
+#include <paddles.hpp>
 #include <string>
-
 class Logic
 {
 public:
@@ -15,8 +14,8 @@ public:
 		std::string leftScoreText = std::to_string(leftScoreNum);
 		std::string rightScoreText = std::to_string(rightScoreNum);
 		leftScore.setString(leftScoreText);
-		rightScore.setString(rightScoreText);
 		leftScore.setPosition(390, 40);
+		rightScore.setString(rightScoreText);
 		rightScore.setPosition(570, 40);
 	};
 
@@ -48,6 +47,48 @@ public:
 		rightScore.setCharacterSize(50);
 		leftScore.setFillColor(sf::Color(200, 200, 200));
 		rightScore.setFillColor(sf::Color(200, 200, 200));
+	}
+
+	void endGame(int& leftScoreNum, int& rightScoreNum, sf::RenderWindow& window)
+	{
+
+		sf::Text leftWon, rightWon, tie;
+
+		// Make left player score
+		leftWon.setString("Player 1   has won!");
+		leftWon.setFont(font);
+		leftWon.setCharacterSize(50);
+		leftWon.setPosition(255, 250);
+		leftWon.setFillColor(sf::Color(200, 200, 200));
+
+		// Make right player score
+		rightWon.setString("Player 2   has won!");
+		rightWon.setFont(font);
+		rightWon.setCharacterSize(50);
+		rightWon.setPosition(255, 250);
+		rightWon.setFillColor(sf::Color(200, 200, 200));
+
+		// Make right player score
+		tie.setString("Players   tied!");
+		tie.setFont(font);
+		tie.setCharacterSize(50);
+		tie.setPosition(255, 250);
+		tie.setFillColor(sf::Color(200, 200, 200));
+
+		// Stop game when left or right player score reaches 11
+
+		if (leftScoreNum == 11 && rightScoreNum == 11)
+		{
+			window.draw(tie);
+		}
+		else if (leftScoreNum >= 11)
+		{
+			window.draw(leftWon);
+		}
+		else if (rightScoreNum >= 11)
+		{
+			window.draw(rightWon);
+		}
 	}
 
 	void drawScore(sf::RenderWindow& window)

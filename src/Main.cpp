@@ -8,8 +8,21 @@
 
 int main()
 {
+	// Make the window
 	sf::RenderWindow window(sf::VideoMode(1000, 600), "PONG");
 	window.setFramerateLimit(60);
+
+	// Create the top and bottom window borders
+	sf::RectangleShape topBorder;
+	sf::RectangleShape bottomBorder;
+
+	topBorder.setSize(sf::Vector2f(1000, 5));
+	topBorder.setFillColor(sf::Color(200, 200, 200));
+	topBorder.setPosition(0, 0);
+
+	bottomBorder.setSize(sf::Vector2f(1000, 5));
+	bottomBorder.setFillColor(sf::Color(200, 200, 200));
+	bottomBorder.setPosition(0, 595);
 
 	// Create player paddles
 	Paddles leftPaddle(10, 40, 20, 280);
@@ -64,10 +77,18 @@ int main()
 		leftPaddle.leftDrawTo(window);
 		rightPaddle.updateRight();
 		rightPaddle.rightDrawTo(window);
-		Logic score(leftScore, rightScore);
-		score.updateScore(ball, leftScore, rightScore);
-		score.drawScore(window);
+		window.draw(topBorder);
+		window.draw(bottomBorder);
 		net.drawTo(window);
+		Logic gameLogic(leftScore, rightScore);
+		gameLogic.updateScore(ball, leftScore, rightScore);
+		gameLogic.drawScore(window);
+		gameLogic.endGame(leftScore, rightScore, window);
+
+		if (leftScore >= 11 || rightScore >= 11)
+		{
+			ball.endGame();
+		}
 
 		window.display();
 	}
