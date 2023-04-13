@@ -16,20 +16,26 @@ int main()
 	sf::RectangleShape topBorder;
 	sf::RectangleShape bottomBorder;
 
-	topBorder.setSize(sf::Vector2f(1000, 5));
+	topBorder.setSize(sf::Vector2f(1000, 10));
 	topBorder.setFillColor(sf::Color(200, 200, 200));
 	topBorder.setPosition(0, 0);
 
-	bottomBorder.setSize(sf::Vector2f(1000, 5));
+	bottomBorder.setSize(sf::Vector2f(1000, 10));
 	bottomBorder.setFillColor(sf::Color(200, 200, 200));
-	bottomBorder.setPosition(0, 595);
+	bottomBorder.setPosition(0, 590);
 
 	// Create player paddles
 	Paddles leftPaddle(10, 40, 20, 280);
-	Paddles rightPaddle(10, 40, 980, 280);
+	Paddles rightPaddle(10, 40, 960, 280);
+
+	sf::Texture secretTexture;
+	if (!secretTexture.loadFromFile("/home/aiden/Desktop/repos/pong-cpp/content/textures/ball.jpg"))
+	{
+		std::cout << "Could not load secret ball texture";
+	}
 
 	// Create ball
-	Ball ball(10, 10, 595, 295);
+	Ball ball(0.03, 0.03, 595, 295, secretTexture);
 
 	int leftScore = 0;
 	int rightScore = 0;

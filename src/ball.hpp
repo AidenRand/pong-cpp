@@ -11,15 +11,15 @@ class Ball
 {
 public:
 	// Make ball
-	Ball(float width, float height, float x, float y)
+	Ball(float width, float height, float x, float y, sf::Texture& texture)
 	{
-		rect.setSize(sf::Vector2f(width, height));
-		rect.setFillColor(sf::Color(200, 200, 200));
+		rect.setTexture(texture);
+		rect.scale(sf::Vector2f(width, height));
 		rect.setOrigin(height / 2, width / 2);
 		rect.setPosition(x, y);
 	}
 
-	sf::RectangleShape rect;
+	sf::Sprite rect;
 
 	void paddleCollision(Paddles& left, Paddles& right)
 	{
@@ -29,23 +29,23 @@ public:
 		// When ball hits paddle, reverse the x speed
 		if (rect.getGlobalBounds().intersects(leftPaddle.getGlobalBounds()))
 		{
-			stepx = 14;
+			stepx = 12;
 		}
 
 		if (rect.getGlobalBounds().intersects(rightPaddle.getGlobalBounds()))
 		{
-			stepx = -14;
+			stepx = -12;
 		}
 	}
 
 	void update()
 	{
 		// If ball hits top or bottom, reverse y speed
-		if (rect.getPosition().y > 590)
+		if (rect.getPosition().y >= 550)
 		{
 			stepy -= 5;
 		}
-		else if (rect.getPosition().y < 10)
+		else if (rect.getPosition().y <= 10)
 		{
 			stepy += 5;
 		}
@@ -60,7 +60,7 @@ public:
 		clock_t now = clock();
 
 		// If ball goes past left or right window boundary, reset ball at center
-		if (rect.getPosition().x > 1005)
+		if (rect.getPosition().x > 1050)
 		{
 			rect.setPosition(494, 240);
 			while (clock() - now < delay)
@@ -68,7 +68,7 @@ public:
 			stepx = -randomStepX;
 			stepy = -randomStepY;
 		}
-		else if (rect.getPosition().x < -5)
+		else if (rect.getPosition().x < -50)
 		{
 			rect.setPosition(494, 240);
 			while (clock() - now < delay)

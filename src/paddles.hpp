@@ -79,7 +79,7 @@ public:
 		if (leftUp)
 		{
 			leftMovement.y += 15;
-			if (leftPaddle.getPosition().y >= 580)
+			if (leftPaddle.getPosition().y >= 575)
 			{
 				leftMovement.y -= 15;
 			}
@@ -87,7 +87,7 @@ public:
 		else if (leftDown)
 		{
 			leftMovement.y -= 15;
-			if (leftPaddle.getPosition().y <= 20)
+			if (leftPaddle.getPosition().y <= 15)
 			{
 				leftMovement.y += 15;
 			}
@@ -106,7 +106,7 @@ public:
 		{
 			rightMovement.y += 15;
 
-			if (rightPaddle.getPosition().y >= 580)
+			if (rightPaddle.getPosition().y >= 575)
 			{
 				rightMovement.y -= 15;
 			}
@@ -114,7 +114,7 @@ public:
 		else if (rightDown)
 		{
 			rightMovement.y -= 15;
-			if (rightPaddle.getPosition().y <= 20)
+			if (rightPaddle.getPosition().y <= 15)
 			{
 				rightMovement.y += 15;
 			}
