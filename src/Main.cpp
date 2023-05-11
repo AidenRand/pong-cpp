@@ -29,13 +29,14 @@ int main()
 	Paddles rightPaddle(10, 40, 960, 280);
 
 	sf::Texture secretTexture;
-	if (!secretTexture.loadFromFile("/home/aiden/Desktop/repos/pong-cpp/content/textures/ball.jpg"))
+	if (!secretTexture.loadFromFile("content/textures/default.png"))
 	{
 		std::cout << "Could not load secret ball texture";
 	}
 
 	// Create ball
-	Ball ball(0.03, 0.03, 595, 295, secretTexture);
+	// Change width and height to 0.03 if image is Bop
+	Ball ball(0.5, 0.5, 595, 295, secretTexture);
 
 	int leftScore = 0;
 	int rightScore = 0;

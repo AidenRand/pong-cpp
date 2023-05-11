@@ -41,7 +41,8 @@ public:
 	void update()
 	{
 		// If ball hits top or bottom, reverse y speed
-		if (rect.getPosition().y >= 550)
+		// Change to 550 if image is Bop
+		if (rect.getPosition().y >= 580)
 		{
 			stepy -= 5;
 		}
